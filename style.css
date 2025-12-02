@@ -1,0 +1,1251 @@
+/* -------------------- 노멀라이즈 -------------------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+ul, li { list-style: none; margin: 0; padding: 0; }
+a { text-decoration: none; color: inherit; }
+
+
+/* -------------------- 폰트페이스 -------------------- */
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+/* PyeongChang Peace Light */
+@font-face {
+  font-family: 'PyeongchangPeace';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+
+/* PyeongChang Peace Bold */
+@font-face {
+  font-family: 'PyeongchangPeace';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+
+/* --------------------   커스텀   -------------------- */
+.sec {
+  position: relative;
+  max-width: 1920px;
+  height: 100vh;
+  overflow: hidden; 
+  margin: 0 auto;
+  background-color: #99C779;
+  color: #066E2D;
+  z-index: 0;
+}
+
+/* --------------------   마우스 트레일 요소 스타일  -------------------- */
+.mouse-trail-element {
+  position: fixed; 
+  width: 30px; 
+  height: 30px;
+  
+  /* 이미지 경로를 사용자님의 클로버 이미지로 설정 */
+  background-color: transparent;
+  background-image: url('./images/mouse-trail.png'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  z-index: 1; 
+  pointer-events: none;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+}
+
+
+
+/* --------------------   header   -------------------- */
+/* 딤드 레이어 스타일 */
+#dimmedOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* 완전 투명 */
+  visibility: hidden;
+  z-index: 999; 
+  transition: background-color 0.3s ease-in-out, visibility 0s 0.3s; 
+}
+
+/* 딤드 레이어가 활성화되었을 때 */
+#dimmedOverlay.active {
+  background-color: rgba(0, 0, 0, 0.6); 
+  visibility: visible;
+  transition: background-color 0.3s ease-in-out, visibility 0s 0s; 
+}
+
+#header {
+  position: fixed;
+  background-color: rgba(255, 255, 255, .2);
+  width: 100%;
+  z-index: 999;
+  display: none;
+  top: 0;
+  left: 0;
+}
+
+.header-content-wrap {
+  max-width: 1920px;
+  padding: 10px 40px;
+  display: flex;
+  justify-content: space-between; /* 양 끝에 배치 */
+  align-items: center;
+}
+
+.menu-group > ul {
+  display: flex;
+  font-family: 'PyeongchangPeace', sans-serif;
+  color: #066E2D;
+  font-size: 26px;
+  font-weight: 300;
+  gap: 30px;
+}
+
+.logo-box .logo img {
+  width: 72px; 
+  height: 33px;
+  object-fit: contain;
+}
+
+.loading_box .loding svg { 
+  width: 45px;
+  height: 45px;
+}
+
+/* 사이드바 초기 상태: 화면 오른쪽 바깥에 고정 */
+.side-menu-box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px; 
+  height: 100vh;
+  background-color: #D2F2B9; 
+  color: #99C779;
+  transform: translateX(100%); 
+  transition: transform 0.3s ease-in-out; 
+  z-index: 1000;
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  text-align: left;
+}
+
+.side-menu-box.active {
+  transform: translateX(0); 
+}
+
+.side-menu-box ul {
+  padding: 20px 0;
+}
+
+.side-menu-box ul li a {
+  display: block;
+  padding: 15px 30px;
+  font-size: 1.1em;
+}
+
+.side-menu-box ul li a:hover {
+  background-color: #99C779;
+  color: #066E2D;
+}
+
+.header-content-wrap {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.close-btn-box {
+  height: 100%;
+  text-align: right;
+  padding: 10px 30px; 
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* 닫기 버튼 이미지 스타일 */
+.close-clover-icon {
+  width: 50px;
+  height: 50px;
+  /* 호버 효과를 위해 투명도(opacity)를 설정 */
+  opacity: 0.8; 
+  transition: opacity 0.2s ease-in-out;
+  display: block; 
+}
+
+/* 호버 시 투명도를 높여서 활성화되는 느낌 부여 */
+.close-btn:hover .close-clover-icon {
+  opacity: 1.0;
+}
+
+.close-btn-box img {
+  width: 50px;
+  height: 50px;
+}
+
+
+/* ----------   sec-1 : hero-banner   ---------- */
+/* ----- 배너 헤더 ----- */
+#main-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 138px;
+  padding: 90px 200px 0 200px; 
+  z-index: 20;
+}
+
+#main-header nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  }
+
+.main-logo-box .main-logo img {
+  width: 72px; 
+  height: 33px;
+  object-fit: contain;
+}
+
+.main-loading_box .main-loding svg { 
+  width: 45px;
+  height: 45px;
+}
+
+/* ----- 배너 콘텐츠 ----- */
+.con-1 {
+  width: 100%;
+  height: 100%;
+  padding: 100px 200px 100px;
+}
+
+.con-1 > .design-meta {
+  width: 100%;
+  padding-top: 100px;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+}
+
+.con-1 > .design-meta > .design-field {
+  padding-bottom: 10px;
+}
+
+.con-1 > .mid {
+  width: 100%;
+  height: 550px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.con-1 > .mid > .title {
+  width: 932px;
+}
+
+.con-1 > .mid > .title > h1 {
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 700;
+  font-size: 150px;
+}
+
+.con-1 > .mid > .menu {
+  width: 475px;
+  height: 630px;
+  padding-bottom: 120px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.con-1 > .mid > .menu > ul {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.con-1 > .mid > .menu ul li a {
+  display: block;
+  height: 100%;
+  position: relative;
+  z-index: 51;
+}
+
+.con-1 > .main-message {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* ----- 메인 배너 배경 꾸밈요소 ----- */
+.background-decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* 모든 배경 꾸밈 요소의 클릭 이벤트 차단 */
+.background-decor, 
+.background-decor > div,
+.background-decor-2, 
+.background-decor-3, 
+.background-decor-4, 
+.footer-background-decor {
+  pointer-events: none; 
+}
+
+.background-decor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.background-decor > div {
+  position: absolute;
+}
+
+.bg-mini-1 {
+  width: 13px;
+  height: 13px;
+  top: 300px;
+  right: 330px;
+}
+
+.bg-mini-2 {
+  width: 13px;
+  height: 13px;
+  top: 220px;
+  right: 550px;
+}
+
+.bg-mini-3 {
+  width: 10px;
+  height: 10px;
+  top: 234px;
+  right: 540px;
+}
+
+.bg-mini-4 {
+  width: 14px;
+  height: 14px;
+  top: 720px;
+  left: 800px;
+}
+
+.bg-mini-5 {
+  width: 8px;
+  height: 8px;
+  top: 660px;
+  left: 700px;
+}
+
+.bg-mini-6 {
+  width: 7px;
+  height: 7px;
+  top: 600px;
+  left: 255px;
+}
+
+.bg-mini-7 {
+  width: 14px;
+  height: 14px;
+  top: 620px;
+  left: 270px;
+}
+
+.bg-mini-8 {
+  width: 14px;
+  height: 14px;
+  top: 500px;
+  left: 40px;
+}
+
+.bg-mini-9 {
+  width: 8px;
+  height: 8px;
+  top: 580px;
+  left: 20px;
+}
+
+.bg-mini-10 {
+  width: 12px;
+  height: 12px;
+  top: 850px;
+  left: 80px;
+}
+
+.bg-Rectangle { 
+  top: 0px;
+  left: 900px;
+  right: 0px;
+}
+
+.bg-one-1 { 
+  width: 1486px;
+  height: 1486px;
+  top: -960px;
+  left: -380px;
+}
+
+.bg-one-2 { 
+  width: 1000px;
+  left: 1100px;
+  top: 500px;
+}
+
+.dotte-circle { 
+  width: 240px;
+  height: 400px;
+  top: 300px;
+  left: -150px;
+}
+
+.dotte-circle-2 { 
+  width: 420px;
+  height: 500px;
+  top: 320px;
+  left: 1700px;
+  z-index: 2;
+}
+
+.bg-clover-1 { 
+  width: 722px;
+  height: 1000px;
+  left: 50px;
+  top: 400px;
+}
+
+.bg-clover-2 { 
+  width: 537px;
+  height: 744px;
+  left: 950px;
+  top: 50px;
+  transform: rotate(-2deg);  
+}
+
+.clover { 
+  width: 170px;
+  height: 235px;
+  left: 1120px;
+  top: 310px;
+  z-index: 5;
+}
+
+/* 포스트잇 */
+.postit { 
+  width: 180px;
+  height: 150px;
+  left: 96px;
+  top: 640px;
+  z-index: 15; 
+}
+
+
+
+
+
+/* ----------   sec-2 : introduce   ---------- */
+.con-2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 150px 200px 100px;
+}
+
+.con-2 > .con-2-title > h2 {
+  font-size: 60px;
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 700;
+}
+
+.con-2-sub_title > h2 {
+  font-size: 30px;
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 700;
+  padding-top: 50px;
+}
+
+.con-2-text > p {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  padding-top: 50px;
+  line-height: 30px;
+}
+
+/* ----- con-2 배경 꾸밈요소 ----- */
+.sec2-bg-mini-1 {
+  width: 13px;
+  height: 13px;
+  top: 100px;
+  left: 100px;
+  z-index: 3;
+}
+
+.sec2-bg-mini-2 {
+  width: 22px;
+  height: 22px;
+  top: 600px;
+  left: 1100px;
+  z-index: 3;
+}
+
+.sec2-bg-mini-3 {
+  width: 12px;
+  height: 12px;
+  top: 580px;
+  left: 1120px;
+  z-index: 3;
+}
+
+.sec2-bg-mini-4 {
+  width: 14px;
+  height: 14px;
+  top: 720px;
+  left: 800px;
+  z-index: 3;
+}
+
+.sec2-bg-mini-5 {
+  width: 8px;
+  height: 8px;
+  top: 160px;
+  left: 30%;
+  z-index: 3;
+}
+
+.sec2-bg-mini-6 {
+  width: 10px;
+  height: 10px;
+  top: 200px;
+  right: 300px;
+  z-index: 3;
+}
+
+
+.background-decor-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  z-index: -1; 
+}
+
+.background-decor-2 > div {
+  position: absolute;
+}
+
+.background-decor-2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
+/* (좌측 상단 큰 배경 원) */
+.con-2_bg-one {
+  width: 2081.49px;
+  height: 1756.67px;
+  top: -877px;
+  left: -500px;
+  transform: rotate(-5deg);
+  z-index: 2;
+}
+
+/* (우측 하단 작은 배경 원) */
+.con-2_bg-one-2 {
+  width: 1000px;
+  height: 800px;
+  top: 550px;
+  left: 1100px;
+  z-index: 1;
+}
+
+/* (좌측 중간 점선 원) */
+.con-2_dotted-circle {
+  width: 240px;
+  height: 400px;
+  top: 350px; 
+  left: -145px;
+  z-index: 5;
+  opacity: 0.8; 
+}
+
+/* (우측 중앙 점선 원) */
+.con-2_dotted-circle1-2 {
+  width: 400px;
+  height: 500px;
+  top: 400px;
+  left: 1650px;
+  z-index: 5;
+}
+
+/* (좌측 하단 작은 클로버) */
+.con-2_clover {
+  width: 722px;
+  height: 1000px;
+  top: 550px;
+  left: 50px;
+  transform: rotate(-5deg);
+}
+
+
+
+
+/* ----------   sec-3 : profile   ---------- */
+#profile {
+  position: relative;
+  max-width: 1920px;
+  height: 100%;
+  overflow-x: hidden; 
+  margin: 0 auto;
+  color: #066E2D;
+  padding: 50px 200px;
+}
+
+.con-3 {
+  width: 1520;
+  height: 100%;
+  padding-top: 50px;
+}
+
+/* about me 타이틀 */
+.con-3 > .con-3-title {
+  width: 100%;
+  height: auto;
+  padding-bottom: 50px;
+}
+
+.con-3 > .con-3-title > h2 {
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+/* 프로필 */
+.con-3_profile-wrap {
+  display: flex;
+  width: 100%;
+  height: 726px;
+}
+
+.profile, .data, .data-2 {
+  flex: 1;
+}
+
+.picture-box {
+  width: 200px;
+  height: 254px;
+  background-color: #B9DB9F;
+}
+
+.picture-box > img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 프로필 소개 */
+.profile-info-box, .slogan {
+  width: 100%;
+  height: auto;
+}
+
+.profile-info-box {
+  width: 306px;
+  margin-top: 50px;
+  margin-bottom: 68px;
+}
+
+.profile-info-box > .info-1 {
+  padding-bottom: 20px;
+  color: #ffffff;
+}
+
+.profile-info-box > .info-1 > h1 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.profile-info-box > .info-1 > .birthdate {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  padding-top: 4px;
+}
+
+.info-1, .info-2, .info-3, .info-4 {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.profile-info-box .contact-label {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.slogan {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 306px;
+}
+
+.slogan > img {
+  width: 17px;
+  height: 54px;
+}
+
+.slogan > p {
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.slogan > p > span {
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  color: #D2F2B9;
+}
+
+/* data */
+.education-box, .qualifications-box, .awards-section,
+.tool-section {
+  height: 270px;
+}
+
+.section-heading {
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.list-item {
+  display: flex;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.list-item-1 {
+  width: 150px;
+  color: #D2F2B9;
+}
+
+.list-item-1 > .item-date {
+  font-weight: 700;
+}
+
+.tool-list {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.tool-icon {
+  width: 40px; 
+  height: 40px; 
+  border: 1px solid white; 
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; 
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tool-icon-6 {
+  width: 60px; 
+  height: 40px; 
+}
+
+.tool-section .section-heading {
+  font-weight: 900; 
+  font-size: 20px;
+}
+
+/* con-3 배경 꾸밈요소 */
+.background-decor-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  z-index: -1; 
+}
+
+.background-decor-3 > div {
+  position: absolute;
+}
+
+.background-decor-3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
+.con-3_bg-one {
+  width: 1000px;
+  height: 800px;
+  left: 1008px;
+  top: -570px;
+  transform: rotate(-180deg);
+}
+
+.con-3_bg-clover {
+  width: 722px;
+  height: 1000px;
+  left: 57px;
+  top: -535px;
+}
+
+.con-3_bg-clover-2 {
+  height: 2394px;
+  left: -1350px;
+  top: -70px;
+}
+
+.con-3_clover-group {
+  left: 1550px;
+  top: 580px;
+  width: 300px; 
+  height: 300px; 
+} 
+
+
+/* ----------   sec-4 : work-preview   ---------- */
+#work-preview {
+  max-width: 1920px;
+  height: 100vh;
+  margin: 0 auto;
+  color: #066E2D;
+  background-color: #99C779;
+  padding: 0 200px;
+}
+
+.con-4 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+}
+
+.con-4-title {
+  width: 100%; 
+}
+
+.con-4-title > h2 {
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  text-align: left;
+}
+
+.slide-wrap {
+  max-width: 1520px;
+  width: 100%;
+  overflow: hidden; 
+  padding-top: 50px;
+  margin: 0 auto;
+}
+
+.slide-track > .slide-item {
+  width: 840px;
+  height: 475px;
+}
+
+.slide-track > .slide-item > img {
+  width: 100%;
+  display: block; 
+  object-fit: cover;
+}
+
+/* 버튼 기본 설정 */
+.swiper-button-left,
+.swiper-button-right {
+  position: absolute; 
+  top: 55%;
+  transform: translateY(-50%); 
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 100;
+  transition: opacity 0.3s;
+}
+
+.swiper-button-left img,
+.swiper-button-right img {
+  width: 100%; 
+  height: 100%;
+  object-fit: contain;
+}
+
+/*  버튼 위치 조정  */
+.swiper-button-left {
+  left: 20px; 
+}
+
+.swiper-button-right {
+  right: 20px; 
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  content: none !important; 
+}
+
+/* con-4 배경 꾸밈요소 */
+.background-decor-4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  z-index: -2; 
+}
+
+.background-decor-4 > div {
+  position: absolute;
+}
+
+.background-decor-4 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
+.con-4_bg-clover {
+  height: 2394px;
+  left: -1300px;
+  top: -1300px;
+}
+
+.con-4_bg-loveclover {
+  width: 403px;
+  height: 171px;
+  top: 660px;
+  left: 50px;
+}
+
+
+
+/* ----------   sec-5 : work-detail   ---------- */
+#work-detail {
+  max-width: 1920px;
+  height: 100vh;
+  margin: 0 auto;
+  color: #066E2D;
+  background-color: #99C779;
+  padding: 0 200px;
+}
+
+.con-5, .con-6, .con-7, .con-8, .con-9, .con-10,
+.con-11, .con-12
+{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+}
+
+.work-detail-wrap .swiper {
+  position: relative;
+}
+
+.work-detail-wrap .swiper-slide {
+  display: flex;
+  align-items: center;
+  gap: 65px; /* 왼쪽 이미지와 오른쪽 텍스트 사이 간격 */
+  width: 100%;
+  padding: 0 120px;
+}
+
+.work-detail-wrap .arrow-btn > img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.work-detail-wrap .arrow-btn.arrow-right > img {
+  right: 0;
+  left: auto;
+}
+
+
+.arrow-left > img {
+  width: 56.82px;
+  height: 54.04px;
+}
+
+.arrow-right > img {
+  width: 56.82px;
+  height: 54.04px;
+}
+
+
+
+/* 상세 이미지 영역 (왼쪽) */
+.detail-left {
+  flex-shrink: 0; 
+  width: 898px;
+  height: 482px;
+  overflow: hidden;
+  background-color: #000; /* 이미지 없을 시 배경색 (Nikon 웹사이트 배경색) */
+}
+
+.detail-left > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.detail-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  height: 482px;
+  width: 316px;
+}
+
+.detail-text-box {
+  height: 100%;
+}
+
+.work-Information h2 {
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #ffffff;
+  padding-top: 150px;
+}
+
+.work-Information .work-time {
+font-family: 'Pretendard', sans-serif;
+font-weight: 300;
+font-size: 16px;
+margin-top: 10px;
+color: #ffffff;
+}
+
+/* Overview 섹션 */
+.overview {
+  margin-top: 50px;
+}
+
+.overview > span {
+  display: block;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #D2F2B9; /* 진한 녹색으로 설정 */
+  margin-bottom: 10px;
+}
+
+.overvirw-text p {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* 버튼 박스 */
+.button-box {
+  display: flex;
+  gap: 20px;
+}
+
+.button-box a {
+  display: block;
+  width: 140px;
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s;
+}
+
+.button-box a:hover {
+  border: 1px solid #066e2d;
+  color: #066e2d;
+}
+
+
+
+/* ----------   footer   ---------- */
+footer {
+  position: relative;
+  max-width: 1920px;
+  height: 100vh;
+  overflow: hidden; 
+  margin: 0 auto;
+  padding: 100px 200px; 
+  background-image: linear-gradient( 180deg, rgba(210, 242, 185, 1) 0%, rgba(153, 199, 121, 1) 100% );
+  color: #066E2D;
+  z-index: -1;
+}
+
+.footer-con {
+  width: 1520px;
+  height: 100%;
+  position: relative;
+  margin: 0 auto;
+  color: #066E2D;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+  z-index: -2;
+}
+
+.footer-box {
+  position: relative;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-text {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.footer-text > p > span {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.footer-text > a > span {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.footer-text-1 {
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+
+.footer-text-7 {
+  padding-left: 30px;
+}
+
+.footer-text-8 p {
+  font-family: 'PyeongchangPeace', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  border: 1px solid #066E2D;
+  border-radius: 20px;
+  padding: 5px 15px; 
+  margin: 0;
+  display: inline-block; 
+}
+
+.footer-text-8 {
+  padding-top: 50px;
+}
+
+.footer-background-decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.footer-background-decor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.footer-background-decor > div {
+  position: absolute;
+}
+
+.footer-clover {
+  width: 1728.88px;
+  height: 2394.28px;
+  left: -590px;
+  top: -200px;
+}
+
+
+.top_bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.section_group {
+  overflow-y: scroll;
+  height: 100vh;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+.section_group > section, footer {
+  min-height: 100vh;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
