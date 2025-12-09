@@ -723,7 +723,7 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 306px;
+  width: 275px;
 }
 
 .slogan > img {
@@ -734,7 +734,7 @@ a { text-decoration: none; color: inherit; }
 .slogan > p {
   font-family: 'PyeongchangPeace', sans-serif;
   font-weight: 300;
-  font-size: 24px;
+  font-size: 22px;
   color: #ffffff;
 }
 
